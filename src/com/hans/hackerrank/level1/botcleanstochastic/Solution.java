@@ -1,34 +1,47 @@
 package com.hans.hackerrank.level1.botcleanstochastic;
+
 import java.util.Scanner;
 
+/**
+ * Solution to <a
+ * href="https://www.hackerrank.com/challenges/botcleanr">https://
+ * www.hackerrank.com/challenges/botcleanr</a>.
+ * <p>
+ * Simply identifies the single dirty tile on the board and then moves towards
+ * it. Since the board is open, there's no pathfinding required in any way and
+ * the most direct way is as straightforward as moving along the x axis until
+ * linged up and then moving along the y axis until lined up with the dirty
+ * tile.
+ * </p>
+ * 
+ * @author Hermann Hans
+ * 
+ */
 public class Solution {
 
 	enum Move {
 		RIGHT, LEFT, UP, DOWN, CLEAN
 	}
 
-	static int moves = Integer.MAX_VALUE;
 	static final char DIRTY = 'd';
-	static final char CLEAN = '-';
-	static final char BOT = 'b';
 
 	/* Head ends here */
 	static void nextMove(int posx, int posy, String[] board) {
+
+		if (board[posx].charAt(posy) == DIRTY) {
+			System.out.println(Move.CLEAN);
+			return;
+		}
+
 		int d_x = 0;
 		int d_y = 0;
-		char[][] cboard = new char[5][5];
-
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
-				cboard[i][j] = board[i].charAt(j);
-				if (cboard[i][j] == DIRTY) {
+				if (board[i].charAt(j) == DIRTY) {
 					d_x = i;
 					d_y = j;
 				}
 			}
-		if (cboard[posx][posy] == DIRTY) {
-			System.out.println(Move.CLEAN);
-			return;
 		}
 
 		if (posx < d_x)
@@ -46,10 +59,12 @@ public class Solution {
 		Scanner in = new Scanner(System.in);
 		int[] pos = new int[2];
 		String board[] = new String[5];
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 2; i++) {
 			pos[i] = in.nextInt();
-		for (int i = 0; i < 5; i++)
+		}
+		for (int i = 0; i < 5; i++) {
 			board[i] = in.next();
+		}
 		nextMove(pos[0], pos[1], board);
 	}
 }
