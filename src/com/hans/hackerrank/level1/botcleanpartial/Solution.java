@@ -1,4 +1,5 @@
 package com.hans.hackerrank.level1.botcleanpartial;
+
 import java.util.Scanner;
 
 public class Solution {
@@ -27,9 +28,6 @@ public class Solution {
 			System.out.println(m);
 			return;
 		}
-		
-		
-
 	}
 
 	/* Tail starts here */
